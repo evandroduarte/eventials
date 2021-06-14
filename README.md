@@ -51,10 +51,12 @@ following structure:
 Tests were made using Insomnia API Client
 
 Upload test:
-![Upload_Test](/assets/api_update.png)
+
+![api_update](https://user-images.githubusercontent.com/39135867/121907869-d9a48a80-cd02-11eb-8096-d9b1a35fc7a6.png)
 
 Company get test:
-![get_Test](/assets/api_get.png)
+
+![api_get](https://user-images.githubusercontent.com/39135867/121907871-da3d2100-cd02-11eb-888d-88fe5cb4c96b.png)
 
 
 ## License
