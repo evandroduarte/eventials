@@ -1,4 +1,4 @@
-package insert
+package main
 
 import(
 	"log"
@@ -17,7 +17,7 @@ import(
 )
 
 //Inserting companies from csv file
-func InsertCompanies() {
+func main() {
 	client, err := mongo.NewClient(options.Client().ApplyURI(database.DatabaseURIEnvVariable("URI")))
 	if err != nil {
 		log.Fatal(err)

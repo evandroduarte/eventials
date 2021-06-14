@@ -2,18 +2,16 @@ package main
 
 import (
 	"eventials/get"
-	"eventials/insert"
 	"eventials/upload_csv"
 	"fmt"
 	"log"
 	"net/http"
-	
+
 	"github.com/gorilla/mux"
 )
 
 func main() {
 	//By running main.go the companies are automatically added to de db
-	insert.InsertCompanies()
 	fmt.Println("Server listening on port 8080")
 	setRoutes()
 }
