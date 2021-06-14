@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"time"
+	"eventials/database"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -13,9 +14,9 @@ import (
 )
 
 type Company struct {
-	Id string
-	Name string
-	Zip  string
+	Id      string
+	Name    string
+	Zip     string
 	Website string
 }
 
@@ -30,10 +31,11 @@ func GetCompany(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://evandro:YWQdeZjCTlP8kka6@eventials.q0i7q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
+	client, err := mongo.NewClient(options.Client().ApplyURI(database.DatabaseURIEnvVariable("URI")))
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
 	err = client.Connect(ctx)
 	if err != nil {
@@ -44,6 +46,7 @@ func GetCompany(w http.ResponseWriter, r *http.Request) {
 	YawoenDatabase := client.Database("Yawoen")
 	companiesCollection := YawoenDatabase.Collection("companies")
 
+	//Regex created for search with partial company name
 	regex := `(?i).*` + company.Name
 
 	filterCursor, err := companiesCollection.Find(ctx, bson.M{

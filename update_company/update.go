@@ -1,17 +1,21 @@
 package update
 
 import (
+	"context"
+	"eventials/database"
+	"fmt"
+	"log"
+	"strings"
+	"time"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"log"
-	"context"
-	"strings"
-	"time"
 )
 
+
 func UpdateCompanies(records [][]string) {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://evandro:YWQdeZjCTlP8kka6@eventials.q0i7q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
+	client, err := mongo.NewClient(options.Client().ApplyURI(database.DatabaseURIEnvVariable("URI")))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -37,4 +41,5 @@ func UpdateCompanies(records [][]string) {
 		companiesCollection.FindOneAndUpdate(ctx, filter, update)
 	}
 
+	fmt.Println("Companies updated")
 }

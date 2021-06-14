@@ -1,10 +1,6 @@
 package insert
 
 import(
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-
 	"log"
 	"os"
 	"fmt"
@@ -12,11 +8,17 @@ import(
 	"encoding/csv"
 	"context"
 	"time"
+	"eventials/database"
+
+
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 //Inserting companies from csv file
 func InsertCompanies() {
-	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb+srv://evandro:YWQdeZjCTlP8kka6@eventials.q0i7q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"))
+	client, err := mongo.NewClient(options.Client().ApplyURI(database.DatabaseURIEnvVariable("URI")))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -34,19 +36,24 @@ func InsertCompanies() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	reader := csv.NewReader(file)
 	records, _ := reader.ReadAll()
 
+
+	fmt.Println("Inserting companies into database from q1_catalog")
+	
 	for i := 1; i < len(records); i++ {
-		companyResult, err := companiesCollection.InsertOne(ctx, bson.D{
+		_, err := companiesCollection.InsertOne(context.TODO(), bson.D{
 			{Key: "name", Value: strings.ToUpper(strings.Split(records[i][0], ";")[0])},
 			{Key: "zip", Value: strings.Split(records[i][0], ";")[1]},
 		})
+
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(companyResult)
 	}
+	fmt.Println("Companies added to database!")
 
 	if err != nil {
 		log.Fatal(err)
