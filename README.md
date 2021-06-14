@@ -1,6 +1,6 @@
-# Eventials data integration teste - Yawoen Company 
+# Eventials data integration challenge - Yawoen Company 
 
-This is an aplication to integrate data from csv files into a Mongo database.
+This application was developed for the eventials data integration challenge, developed with Go v1.16 and Mongo DB
 
 ## Installation
 
@@ -22,6 +22,8 @@ OR
 go build main.go
 ```
 
+Using "go run main.go" or executing the main.exe will insert the data from file "q1_catalog.csv" into the database and start the API
+
 ⚠️ Running the aplication multiple times without clearing the database will result in multiple repeated entries
 
 ## API
@@ -33,8 +35,9 @@ The routes listed in the API are:
 POST (/upload) - Recieve a multipart with key "myFile" and if the file is a well formated csv (name;address zip; website) start the data integration
 between the companies in the csv and the companies already added to the database
 
-GET (/company) - Recieve a json with the keys "name" and "zip" and their values for the company, returns a json containing all the information of the company in  
-following structure:
+GET (/company) - Recieve a json with the keys "name" and "zip" and their values for the company, returns a json containing all the information of the company 
+
+response example:
 ```Bash
 [
   {
