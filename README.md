@@ -54,11 +54,11 @@ Tests were made using Insomnia API Client
 
 Upload test:
 
-![api_update](https://user-images.githubusercontent.com/39135867/121907869-d9a48a80-cd02-11eb-8096-d9b1a35fc7a6.png)
+![api_update](https://user-images.githubusercontent.com/39135867/121963895-1becbc80-cd41-11eb-888b-6c0c64c9a5b1.png)
 
 Company get test:
 
-![api_get](https://user-images.githubusercontent.com/39135867/121907871-da3d2100-cd02-11eb-888d-88fe5cb4c96b.png)
+![api_get](https://user-images.githubusercontent.com/39135867/121963890-1abb8f80-cd41-11eb-8e58-52baf1970238.png)
 
 
 ## License
