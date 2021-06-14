@@ -1,15 +1,14 @@
 package main
 
-import(
+import (
+	"context"
+	"encoding/csv"
+	"eventials/database"
+	"fmt"
 	"log"
 	"os"
-	"fmt"
 	"strings"
-	"encoding/csv"
-	"context"
 	"time"
-	"eventials/database"
-
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -40,17 +39,21 @@ func main() {
 	reader := csv.NewReader(file)
 	records, _ := reader.ReadAll()
 
-
 	fmt.Println("Inserting companies into database from q1_catalog")
-	
-	for i := 1; i < len(records); i++ {
-		_, err := companiesCollection.InsertOne(context.TODO(), bson.D{
-			{Key: "name", Value: strings.ToUpper(strings.Split(records[i][0], ";")[0])},
-			{Key: "zip", Value: strings.Split(records[i][0], ";")[1]},
-		})
 
-		if err != nil {
-			log.Fatal(err)
+	for i := 1; i < len(records); i++ {
+
+		zipSize := len(strings.Split(records[i][0], ";")[1])
+
+		if zipSize == 5 {
+			_, err := companiesCollection.InsertOne(context.TODO(), bson.D{
+				{Key: "name", Value: strings.ToUpper(strings.Split(records[i][0], ";")[0])},
+				{Key: "zip", Value: strings.Split(records[i][0], ";")[1]},
+			})
+
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	}
 	fmt.Println("Companies added to database!")
