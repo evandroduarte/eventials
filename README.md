@@ -1,6 +1,6 @@
 # Eventials data integration challenge - Yawoen Company 
 
-This is an aplication to integrate data from csv files into a Mongo database.
+This application was developed for the eventials data integration challenge, develoed with Go v1.16 and Mongo DB
 
 ## Installation
 
