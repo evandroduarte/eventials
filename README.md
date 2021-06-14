@@ -50,6 +50,12 @@ following structure:
 
 Tests were made using Insomnia API Client
 
+Upload test:
+![Upload_Test](/assets/api_update.png)
+
+Company get test:
+![get_Test](/assets/api_get.png)
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
