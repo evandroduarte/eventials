@@ -25,7 +25,7 @@ func UploadCSV(w http.ResponseWriter, r *http.Request) {
 	if handler.Filename[len(handler.Filename)-3:] == "csv" && records[0][0] == "name;addresszip;website" {
 		update.UpdateCompanies(records)
 		json.NewEncoder(w).Encode("Documents updated")
-
+		
 	} else if records[0][0] != "name;addresszip;website" {
 		fmt.Println("Wrong parameters file")
 	} else {

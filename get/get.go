@@ -65,6 +65,11 @@ func GetCompany(w http.ResponseWriter, r *http.Request) {
 		log.Fatal(err)
 	}
 
-	json.NewEncoder(w).Encode(companiesFiltered)
+	if companiesFiltered == nil {
+		json.NewEncoder(w).Encode("Company not found, name or zip address incorrect")
+	} else {
+		json.NewEncoder(w).Encode(companiesFiltered)
+
+	}
 
 }
