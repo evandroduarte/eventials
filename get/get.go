@@ -3,10 +3,11 @@ package get
 import (
 	"context"
 	"encoding/json"
+	"eventials/database"
 	"log"
 	"net/http"
+	"strings"
 	"time"
-	"eventials/database"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -47,7 +48,7 @@ func GetCompany(w http.ResponseWriter, r *http.Request) {
 	companiesCollection := YawoenDatabase.Collection("companies")
 
 	//Regex created for search with partial company name
-	regex := `(?i).*` + company.Name
+	regex := `(?i).*` + strings.ToUpper(company.Name)
 
 	filterCursor, err := companiesCollection.Find(ctx, bson.M{
 		"$and": []bson.M{
