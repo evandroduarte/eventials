@@ -13,20 +13,19 @@ URI=<your_connection_URI>
 After the creation of .env file with connection URI to de Mongo database cluster use the command:
 
 ```Bash
-go run main.go
+make
 ```
+Make will run the insert of the contents of q1_catalog.csv into the database and start the API
 
-OR
-
-```Bash
-go build main.go
-```
-
-Using "go run main.go" or executing the main.exe will insert the data from file "q1_catalog.csv" into the database and start the API
-
-⚠️ Running the aplication multiple times without clearing the database will result in multiple repeated entries
+⚠️ Running the "make" command multiple times without clearing the database will result in multiple repeated entries
 
 ## API
+
+To start the API without inserting the components of the q1_catalog.csv file to the database use the command:
+
+```Bash
+make start
+```
 
 The API will be accessible through port *8080*
 
