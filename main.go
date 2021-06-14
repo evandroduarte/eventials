@@ -7,11 +7,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
-
+	
 	"github.com/gorilla/mux"
-
-	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -19,17 +16,6 @@ func main() {
 	insert.InsertCompanies()
 	fmt.Println("Server listening on port 8080")
 	setRoutes()
-}
-
-func DatabaseURIEnvVariable(URI string) string {
-
-	err := godotenv.Load(".env")
-
-	if err != nil {
-		log.Fatalf("Error loading .env file")
-	}
-
-	return os.Getenv(URI)
 }
 
 //Routes function
