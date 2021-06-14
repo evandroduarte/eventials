@@ -1,6 +1,6 @@
 # Eventials data integration challenge - Yawoen Company 
 
-This application was developed for the eventials data integration challenge, develoed with Go v1.16 and Mongo DB
+This application was developed for the eventials data integration challenge, developed with Go v1.16 and Mongo DB
 
 ## Installation
 
