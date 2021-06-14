@@ -13,7 +13,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-
+//API route to update documents from uploaded csv file
 func UpdateCompanies(records [][]string) {
 	client, err := mongo.NewClient(options.Client().ApplyURI(database.DatabaseURIEnvVariable("URI")))
 	if err != nil {
